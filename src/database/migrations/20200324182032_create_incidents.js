@@ -1,6 +1,6 @@
 
 exports.up = function(knex) {
-  knex.schema.createTable('indicents', function(table) {
+  return knex.schema.createTable('indicents', function(table) {
     table.increments();
     table.string('title').notNullable();
     table.string('description').notNullable();
@@ -8,10 +8,10 @@ exports.up = function(knex) {
 
     table.string('ong_id').notNullable();
 
-    table.foreing('ong-id').references('id').inTable('ongs');
+    table.foreign('ong_id').references('id').inTable('ongs');
   });
 };
 
 exports.down = function(knex) {
-  knex.schema.dropTable('incidents');
+  return knex.schema.dropTable('incidents');
 };
